@@ -12,20 +12,4 @@ class Link < ApplicationRecord
     self.slug = SecureRandom.uuid[0..5] if self.slug.nil? || self.slug.empty?
     true
   end
-  
-  # fast access to the shortened link
-  def short
-    Rails.application.routes.url_helpers.short_url(slug: self.slug)
-  end
-  
-  # API
-  def self.shorten(url, slug = '')
-    link = Link.where(url: url, slug: slug).first
-    return link.short if link  
-    
-    link = Link.new(url: url, slug: slug)
-    return link.short if link.save
-    
-    Link.shorten(url, slug + SecureRandom.uuid[0..2])
-  end
 end

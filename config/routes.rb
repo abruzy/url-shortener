@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
+      resources :links, only: %i[create show]
       get '/s/:slug', to: 'links#show', as: :short
     end
   end
