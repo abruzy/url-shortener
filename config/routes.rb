@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root to: 'homes#index'
+
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
       resources :links, only: %i[create show]
