@@ -17,7 +17,6 @@ class Api::V1::LinksController < ApplicationController
         message: '404 error, please check your broken link!'
       }
     else
-      @link.update_attribute(:clicked, @link.clicked + 1)
       redirect_to @link.url
     end
   end

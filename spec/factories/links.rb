@@ -1,7 +1,6 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :link do
-    url "MyString"
-    slug "MyString"
-    clicked 1
+    url { Faker::Internet.url }
+    slug { Faker::Internet.slug }
   end
 end
