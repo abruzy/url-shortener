@@ -3,7 +3,9 @@ class Api::V1::LinksController < ApplicationController
     @link = Link.new(shortener_params)
 
     if @link.save
-      render json: @link, status: :created
+      render json: {
+        data: @link
+      }, status: :created
     else
       render json: @link.errors, status: :unprocessable_entity
     end
