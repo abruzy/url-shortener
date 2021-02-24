@@ -4,9 +4,13 @@ class Link < ApplicationRecord
   validates_presence_of :url  
   validates :url, format: URI::regexp(%w[http https])  
   validates_uniqueness_of :slug
-  
-  # auto slug generation
+
   def generate_slug
-    self.slug = SecureRandom.uuid[0..5] if self.slug.nil?
+    return if self.slug.present?
+
+    loop do
+        self.slug = SecureRandom.uuid[0..5]
+        break unless Link.where(slug: slug).exists?
+    end
   end
 end
