@@ -10,7 +10,7 @@ RSpec.describe Link, type: :model do
   end
 
   describe "presence validations" do
-    it { should validate_presence_of(:url) }
+    it { should validate_presence_of(:original_url) }
   end
 
   describe "uniqueness validations" do
@@ -20,14 +20,14 @@ RSpec.describe Link, type: :model do
   describe "url regex" do
     context "when a valid url is passed" do
       it "returns a valid object" do
-        short_url.url = "https://abubakardiallo.com"
+        short_url.original_url = "https://abubakardiallo.com"
         expect(short_url).to be_valid
       end
     end
 
     context "when an invalid url is passed" do
       it "returns an invalid object" do
-        short_url.url = "abubakardiallo"
+        short_url.original_url = "abubakardiallo"
         expect(short_url).to_not be_valid
       end
     end

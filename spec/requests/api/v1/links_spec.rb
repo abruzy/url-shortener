@@ -7,7 +7,7 @@ RSpec.describe "Api::V1::LinksController", type: :request do
     context "when user passes in valid link params" do
       let(:short_url) {
         {
-          url: params[:url],
+          original_url: params[:original_url],
           slug: params[:slug]
         }.as_json
       }
@@ -26,7 +26,7 @@ RSpec.describe "Api::V1::LinksController", type: :request do
 
     context "when invalid params are passed" do
       before do
-        params.delete :url
+        params.delete :original_url
         post api_v1_links_path, params: params
       end
 
@@ -35,7 +35,7 @@ RSpec.describe "Api::V1::LinksController", type: :request do
       end
 
       it "returns an error" do
-        expect(json["url"]).to include("can't be blank")
+        expect(json["original_url"]).to include("can't be blank")
       end
     end
 

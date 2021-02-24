@@ -19,13 +19,13 @@ class Api::V1::LinksController < ApplicationController
         message: '404 error, please check your broken link!'
       }, status: :not_found
     else
-      redirect_to @link.url
+      redirect_to @link.original_url
     end
   end
 
   private
 
   def shortener_params
-    params.permit(:url, :slug)
+    params.permit(:original_url, :slug)
   end
 end

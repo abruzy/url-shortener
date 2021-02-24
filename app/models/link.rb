@@ -1,8 +1,8 @@
 class Link < ApplicationRecord
   before_validation :generate_slug
 
-  validates_presence_of :url  
-  validates :url, format: URI::regexp(%w[http https])  
+  validates_presence_of :original_url  
+  validates :original_url, format: URI::regexp(%w[http https])  
   validates_uniqueness_of :slug
 
   def generate_slug
