@@ -17,7 +17,7 @@ class Api::V1::LinksController < ApplicationController
     if @link.nil?
       render json: {
         message: '404 error, please check your broken link!'
-      }
+      }, status: :not_found
     else
       redirect_to @link.url
     end
